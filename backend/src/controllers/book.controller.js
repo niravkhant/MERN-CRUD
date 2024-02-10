@@ -6,14 +6,15 @@ const curd = new Date();
 const today = format(curd, "yyyy-MM-dd");
 
 const addBook = async(req, res)=>{
+    const {bookName, bookDescription, price, author, bookLanguage, genre } = req.body
     try {
         const newBook = new Book({
-            bookName: req.body.bookName,
-            bookDescription: req.body.bookDescription,
-            price: req.body.price,
-            author:req.body.author,
-            bookLanguage: req.body.bookLanguage,
-            genre:req.body.genre,
+            bookName,
+            bookDescription,
+            price,
+            author,
+            bookLanguage,
+            genre,
             originallyPublished:today,
         })
     
@@ -32,5 +33,13 @@ const getBooks = async(req, res)=>{
         res.status(500).json({"Server Error in GET BOOKS" : error})
     }
 }
+const getSingleBook = async(req, res)=>{
+    try {
+        const books = await Book.findById(req.params.id)
+        res.status(200).json(books)
+    } catch (error) {
+        res.status(501).json({"Server Error in GET Single BOOKS" : error})
+    }
+}
 
-export {addBook, getBooks}
+export {addBook, getBooks, getSingleBook};

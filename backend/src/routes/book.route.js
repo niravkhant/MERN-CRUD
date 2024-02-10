@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { Book } from "../models/book.model.js"
-import { addBook, getBooks } from "../controllers/book.controller.js";
+import { addBook, getBooks, getSingleBook } from "../controllers/book.controller.js";
 
 const router = Router();
 
@@ -9,14 +9,8 @@ router.route("/addbook").post(addBook);
 
 router.route("/books").get(getBooks);
 
-router.get("/books/:id", async(req, res)=>{
-    try {
-        const books = await Book.findById(req.params.id)
-        res.status(200).json(books)
-    } catch (error) {
-        res.status(501).json({"Server Error in GET Single BOOKS" : error})
-    }
-})
+router.route("/books/:id").get(getSingleBook);
+
 router.put("/updatebook/:id", async(req, res)=>{
     try {
         const books = await Book.findByIdAndUpdate(

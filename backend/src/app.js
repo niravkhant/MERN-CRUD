@@ -15,7 +15,7 @@ app.use(express.static("public"))
 
 app.use(bodyParser.json());
 
-app.use('/api', createBookRouter)
+app.use('/api', createBookRouter);
 
 
 
