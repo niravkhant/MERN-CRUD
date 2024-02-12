@@ -58,7 +58,7 @@ const userSchema = new Schema(
                 expiresIn:  process.env.ACCESS_TOKEN_EXPIRY,
             }
         )
-     };
+     }
      userSchema.methods.generateRefreshToken = async function(){
         return await jwt.sign(
             {
