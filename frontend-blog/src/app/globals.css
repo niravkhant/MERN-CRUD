@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dashboardMainLayout {
+  display: flex;
+}
+
+.sideBarMain {
+  width: 257px;
+}
+.dashboardContentMain {
+  width: calc(100% - 257px);
+}
