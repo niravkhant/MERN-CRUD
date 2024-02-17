@@ -1,9 +1,11 @@
 "use client"
 import makeApiCall from '@/utility/makeApiCall';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const Register = () => {
+  const router = useRouter();
     const [formData, setFormData] = useState({
         userName: "",
         fullName: "",
@@ -25,6 +27,7 @@ const Register = () => {
               email: "",
               password: "",
             });
+            router.push("/login")
             console.log("Regisrer Successccussffuyy");
           };
           const onError = (error) => {

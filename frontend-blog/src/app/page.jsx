@@ -1,8 +1,12 @@
 import Login from "@/components/Login/Login";
-import Image from "next/image";
+import Dashboard from "@/components/dashboard/Dashboard";
+import { useAuth } from "@/context/authContext";
 
 export default function Home() {
-  return <main className="home-section">
-    <Login/>
-  </main>;
+
+  return (
+    <main className="home-section">
+      <Dashboard />
+    </main>
+  );
 }

@@ -2,9 +2,12 @@
 import { useAuth } from "@/context/authContext";
 import makeApiCall from "@/utility/makeApiCall";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import {  Bounce, toast } from 'react-toastify';
 
 const Login = () => {
+  const router = useRouter();
 
   const { setAccessTokenCookies } = useAuth();
 
@@ -25,10 +28,22 @@ const Login = () => {
               password: "",
             });
             setAccessTokenCookies(res.data.accessToken)
+            toast.success('🦄 Login Successfull', {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              transition: Bounce,
+              });
+            router.push("/dashboard")
             console.log(res);
           };
-          const onError = (error) => {
-            console.error("Error 409: Frontend Login Error", error);
+          const onError = (res) => {
+            console.error("Error 409: Frontend Login Error", res);
           };
         makeApiCall("POST", "users/login", formData, onSuccess, onError)
     }
