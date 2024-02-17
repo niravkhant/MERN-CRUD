@@ -1,10 +1,14 @@
-"use client"
+//Dashboard component
+"use client";
 import React, { useEffect } from "react";
 import { useAuth } from "@/context/authContext";
 
 const Dashboard = () => {
-    const {currentUser} = useAuth();
+  const { currentUser, isLoggedIN } = useAuth();
 
+  if (!isLoggedIN) {
+    return <h1>Please Login</h1>;
+  }
   return (
     <section className="relative w-full bg-white">
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -17,7 +21,8 @@ const Dashboard = () => {
           </div>
           <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
             {/* Welcome, to our Admin Pannel */}
-            Welcome, {currentUser ? currentUser.fullName : "to our Admin Pannel"}
+            Welcome,{" "}
+            {currentUser ? currentUser.fullName : "to our Admin Pannel"}
           </h1>
           <p className="mt-8 text-lg text-gray-700">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur

@@ -1,3 +1,4 @@
+// contac us
 "use client";
 import React, { useState } from "react";
 import { useAuth } from "@/context/authContext";
@@ -9,13 +10,13 @@ const ContactUs = () => {
     email: "",
     message: "",
   });
-  console.log("CONTACT US: ", currentUser.fullName);
+  console.log("CONTACT US: ", currentUser?.fullName);
   const [userData, setUserData] = useState(true);
 
   if (userData && currentUser) {
     setFormData({
-      fullName: currentUser.fullName,
-      email: currentUser.email,
+      fullName: currentUser?.fullName,
+      email: currentUser?.email,
       message: "",
     });
 

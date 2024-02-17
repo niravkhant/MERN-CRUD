@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google";
+import Head from "next/head";
 import "./globals.css";
-import { AuthProvider } from "@/context/authContext";
+import { AuthProvider, useAuth } from "@/context/authContext";
 import Header from "@/components/Header/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        <title>Blog Admin</title>
+      </Head>
       <body className={inter.className} suppressHydrationWarning={true}>
         <AuthProvider>
           <ToastContainer

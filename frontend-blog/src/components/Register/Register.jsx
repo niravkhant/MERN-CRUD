@@ -1,3 +1,4 @@
+// register component
 "use client"
 import makeApiCall from '@/utility/makeApiCall';
 import Link from 'next/link'

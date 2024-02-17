@@ -1,3 +1,4 @@
+//authContext.jsx
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     Cookies.set("accessToken", token);
   };
   const getAccessTokenCookies = () => {
-    Cookies.get("accessToken");
+    return Cookies.get("accessToken");
   };
   const removeAccessTokenCookies = () => {
     Cookies.remove("accessToken");
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     const onSuccess = (res) => {
-      setCurrentUser(res.data);
+      setCurrentUser(res?.data);
     };
     const onError = (error) => {
       console.error("Error 409: Frontend current user fetch error", error);
@@ -58,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     userAuthentication();
-  }, []);
+  }, [token]);
 
   return (
     <AuthContext.Provider

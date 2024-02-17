@@ -1,3 +1,4 @@
+//login component
 "use client"
 import { useAuth } from "@/context/authContext";
 import makeApiCall from "@/utility/makeApiCall";
@@ -5,11 +6,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import {  Bounce, toast } from 'react-toastify';
+import Loader2 from "../Loader2";
 
 const Login = () => {
   const router = useRouter();
 
-  const { setAccessTokenCookies } = useAuth();
+  const { setAccessTokenCookies, isLoading } = useAuth();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -47,6 +49,8 @@ const Login = () => {
           };
         makeApiCall("POST", "users/login", formData, onSuccess, onError)
     }
+
+    if(isLoading) return <Loader2 />
 
   return (
     <section>
