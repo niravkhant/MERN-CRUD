@@ -1,8 +1,11 @@
-import Loader from "@/components/Loader"
-
+import Loader from "@/components/Loader";
 
 function loading() {
-  return <Loader/>
+  return (
+    <div className="relative">
+      <Loader />
+    </div>
+  );
 }
 
-export default loading
+export default loading;
